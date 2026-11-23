@@ -3,10 +3,10 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import type { Project, ProjectTag } from "@/content/site";
 
-const TAGS: ("All" | ProjectTag)[] = ["All", "Health", "AI / ML", "Systems", "Tools"];
+const TAGS: ("All" | ProjectTag)[] = ["All", "Health", "Impact", "AI / ML", "Systems", "Tools"];
 
 const STATUS: Record<Project["status"], string> = {
-  Live: "🟢 Live", Building: "🛠️ Building", Shipped: "✨ Shipped", Learning: "📚 Learning",
+  Live: "🟢 Live", Building: "🛠️ Building", Shipped: "✨ Shipped", Learning: "📚 Learning", Cofounder: "🌱 Cofounder",
 };
 
 export function ProjectGrid({ projects }: { projects: Project[] }) {
@@ -77,6 +77,7 @@ function ProjectCard({ p, delay }: { p: Project; delay: number }) {
         </button>
         {p.page && <Link href={p.page} className={`text-${p.color}-ink hover:underline`}>Story & partners →</Link>}
         {p.demo && <a href={p.demo} target="_blank" rel="noreferrer" className={`text-${p.color}-ink hover:underline`}>Live demo ↗</a>}
+        {p.website && <a href={p.website} target="_blank" rel="noreferrer" className={`text-${p.color}-ink hover:underline`}>Website ↗</a>}
         {p.repo && <a href={p.repo} target="_blank" rel="noreferrer" className="ml-auto text-muted hover:text-ink">Code ↗</a>}
       </div>
     </article>

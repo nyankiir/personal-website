@@ -20,7 +20,7 @@ export default async function Home() {
           style={{ animationDelay: "80ms", fontVariationSettings: '"SOFT" 100, "WONK" 1' }}>
           I build<br /><Typewriter phrases={site.rotating} />
         </h1>
-        <p className="rise mt-6 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl" style={{ animationDelay: "160ms" }}>
+        <p className="rise mt-6 max-w-2xl text-xl leading-relaxed text-muted sm:text-2xl" style={{ animationDelay: "160ms" }}>
           {site.intro}
         </p>
         <div className="rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "240ms" }}>
@@ -28,6 +28,23 @@ export default async function Home() {
           <Link href="/go-mama" className="rounded-full bg-rose px-6 py-3 font-bold text-rose-ink transition hover:-translate-y-0.5 hover:shadow-lg">🤱🏾 Partner on go-mama</Link>
           <Link href="/blog" className="rounded-full border border-line bg-card px-6 py-3 font-bold transition hover:-translate-y-0.5 hover:bg-butter">Read the blog</Link>
         </div>
+      </section>
+
+      {/* About */}
+      <section id="about" className="mb-24 scroll-mt-24 grid gap-8 md:grid-cols-[1fr_20rem] md:items-start">
+        <div>
+          <SectionTitle kicker="Nice to meet you" title="About me" emoji="🌷" />
+          <div className="space-y-4 text-lg leading-relaxed text-ink/85">
+            {site.bio.map((para) => <p key={para}>{para}</p>)}
+          </div>
+        </div>
+        <ul className="grid gap-3 md:mt-24">
+          {FACTS.map((f) => (
+            <li key={f.text} className={`flex items-center gap-3 rounded-2xl px-4 py-3 font-bold transition hover:-translate-x-1 bg-${f.color} text-${f.color}-ink`}>
+              <span aria-hidden className="text-2xl">{f.emoji}</span>{f.text}
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* go-mama callout */}
@@ -85,7 +102,7 @@ export default async function Home() {
           {posts.map((p, i) => (
             <Link key={p.slug} href={`/blog/${p.slug}`}
               className={`group rounded-3xl p-6 transition hover:-translate-y-1 hover:shadow-lg ${["bg-lavender", "bg-mint", "bg-peach"][i % 3]}`}>
-              <p className="text-xs font-bold uppercase tracking-wider text-muted">{fmtDate(p.date)} · {p.minutes} min</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-muted">{fmtDate(p.date)} · {p.video ? "▶ Video" : `${p.minutes} min`}</p>
               <h3 className="mt-2 font-display text-2xl font-semibold group-hover:underline">{p.title}</h3>
               <p className="mt-2 text-ink/75">{p.summary}</p>
             </Link>
@@ -110,6 +127,13 @@ export default async function Home() {
     </div>
   );
 }
+
+const FACTS = [
+  { emoji: "🎓", text: "Harvard · Computer Science & Neuroscience", color: "lavender" },
+  { emoji: "🌱", text: "Cofounder, RefuTECH Academy", color: "mint" },
+  { emoji: "🤱🏾", text: "Building go-mama", color: "rose" },
+  { emoji: "⚙️", text: "Aspiring systems & AI engineer", color: "sky" },
+] as const;
 
 function SectionTitle({ kicker, title, emoji, sub }: { kicker: string; title: string; emoji: string; sub?: string }) {
   return (

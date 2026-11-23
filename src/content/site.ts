@@ -2,7 +2,7 @@
 // Lines marked ✏️ are guesses or placeholders: make them yours.
 
 export const site = {
-  name: "Nyankiir", // ✏️ full name if you want it
+  name: "Nyankiir",
   handle: "nyankiir",
   url: "https://nyankiir.vercel.app", // ✏️ your real domain once deployed
   // The hero cycles through these after "I build ".
@@ -11,21 +11,26 @@ export const site = {
     "ML that shows its work",
     "systems that survive failure",
     "brain–computer interface pipelines",
-    "things I wish existed",
+    "technology more people can use",
   ],
-  // ✏️ Two or three sentences in your own voice.
+  // One line under the big headline (also used as the site's description).
   intro:
-    "I'm a student and engineer who likes building things that matter to real people: health tools, machine learning I can actually trust, and the backend plumbing that keeps it all running.",
-  // ✏️ Where you are / what you study, if you want it public.
-  location: "",
-  email: "", // ✏️ a public contact address (leave empty to hide the email button)
+    "Aspiring systems and AI engineer, and firm believer that “it works” should include “for whom?”",
+  location: "Harvard · CS & Neuroscience",
+  // The "About me" section, one string per paragraph.
+  bio: [
+    "Hi, I'm Nyankiir, a Harvard student studying Computer Science and Neuroscience, aspiring systems and AI engineer, and firm believer that “it works” should include “for whom?”",
+    "I'm interested in healthtech, social impact, and building technology that more people can actually use. I'm a cofounder of RefuTECH Academy, where we're working to expand access to technical education and opportunities for refugee youth.",
+    "I'm learning every day, occasionally debugging my own assumptions, and building for access. Take a look at my projects and follow along on my journey.",
+  ],
+  email: "nyankiirmajok18343@gmail.com",
   links: [
     { label: "GitHub", href: "https://github.com/nyankiir" },
     // ✏️ { label: "LinkedIn", href: "https://www.linkedin.com/in/…" },
   ],
 };
 
-export type ProjectTag = "Health" | "AI / ML" | "Systems" | "Tools";
+export type ProjectTag = "Health" | "AI / ML" | "Systems" | "Tools" | "Impact";
 
 export type Project = {
   slug: string;
@@ -35,10 +40,11 @@ export type Project = {
   details: string[];
   stack: string[];
   tags: ProjectTag[];
-  status: "Live" | "Building" | "Shipped" | "Learning";
+  status: "Live" | "Building" | "Shipped" | "Learning" | "Cofounder";
   color: "rose" | "lavender" | "mint" | "peach" | "sky" | "butter";
   repo?: string;
   demo?: string;
+  website?: string;
   page?: string;
 };
 
@@ -55,12 +61,26 @@ export const projects: Project[] = [
       "All access control enforced with Postgres row-level security",
     ],
     stack: ["Next.js 16", "Supabase", "Postgres RLS", "Realtime", "Leaflet"],
-    tags: ["Health", "Tools"],
+    tags: ["Health", "Tools", "Impact"],
     status: "Building",
     color: "rose",
     // repo: "https://github.com/nyankiir/go-mama", // ✏️ uncomment once the repo is public
     demo: "", // ✏️ your Vercel URL once it's deployed
     page: "/go-mama",
+  },
+  {
+    slug: "refutech",
+    name: "RefuTECH Academy",
+    emoji: "🎓",
+    blurb: "I'm a cofounder of RefuTECH Academy, where we're working to expand access to technical education and opportunities for refugee youth.",
+    details: [
+      "✏️ Add what RefuTECH does: programs, who you've taught, partners, what's next",
+    ],
+    stack: ["Education", "Access", "Community"],
+    tags: ["Impact"],
+    status: "Cofounder",
+    color: "butter",
+    // ✏️ website: "https://…",
   },
   {
     slug: "substitute-doctor",
@@ -121,7 +141,7 @@ export const projects: Project[] = [
     stack: ["Python", "SQLite", "HTTP", "Docker"],
     tags: ["Systems"],
     status: "Shipped",
-    color: "butter",
+    color: "lavender",
     repo: "https://github.com/nyankiir/forgeq",
   },
   {
@@ -152,12 +172,15 @@ export const now = [
 // Drag-able stickers in the "Things I'm into" section.
 // ✏️ Add your non-tech interests too: music, sports, food, books…
 export const interests = [
-  { label: "Maternal & global health", emoji: "🌍" },
+  { label: "Women's healthcare access", emoji: "🌍" },
+  { label: "Healthtech", emoji: "🩺" },
+  { label: "Social impact", emoji: "💛" },
+  { label: "Tech education for refugee youth", emoji: "🎓" },
+  { label: "Neuroscience", emoji: "🧬" },
   { label: "ML you can verify", emoji: "✅" },
   { label: "Brain–computer interfaces", emoji: "🧠" },
   { label: "Reliable systems", emoji: "🛠️" },
-  { label: "Tools for real people", emoji: "🤝" },
+  { label: "Building for access", emoji: "🤝" },
   { label: "Learning in public", emoji: "📓" },
-  { label: "Signal processing", emoji: "📈" },
   { label: "Open source", emoji: "💚" },
 ];

@@ -92,9 +92,15 @@ body { background: var(--paper); color: var(--ink); }
   .blob, .rise, .jar-wave, .wiggle:hover { animation: none; }
 }
 
+/* Video players: 16:9, or 9:16 for Shorts */
+.video-frame { position: relative; aspect-ratio: 16 / 9; width: 100%; overflow: hidden; border-radius: 20px; background: var(--lavender); box-shadow: 0 10px 30px -12px rgb(0 0 0 / 0.25); }
+.video-frame.vertical { aspect-ratio: 9 / 16; max-width: 360px; margin-inline: auto; }
+.video-frame iframe, .video-frame video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; object-fit: contain; background: #000; }
+
 /* Blog post typography */
 .prose { line-height: 1.75; font-size: 1.075rem; }
 .prose > * + * { margin-top: 1.1em; }
+.prose .video-frame { margin-block: 1.75em; }
 .prose h2 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; margin-top: 2em; }
 .prose h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-top: 1.6em; }
 .prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }

@@ -2,6 +2,7 @@ import "server-only";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { marked } from "marked";
+import { parseVideo, videoHtml } from "@/lib/video";
 
 // Blog posts are Markdown files in content/blog. The file name is the URL.
 
@@ -12,6 +13,7 @@ export type Post = {
   summary: string;
   tags: string[];
   minutes: number;
+  video: string | null; // featured video link from frontmatter
   body: string; // markdown
 };
 
@@ -33,6 +35,7 @@ function parse(slug: string, raw: string): Post & { draft: boolean } {
     summary: meta.summary ?? "",
     tags,
     minutes: Math.max(1, Math.round(body.split(/\s+/).length / 220)),
+    video: parseVideo(meta.video) ? meta.video : null,
     body,
     draft: meta.draft === "true",
   };
@@ -52,9 +55,19 @@ export async function getPost(slug: string) {
   return (await getPosts()).find((p) => p.slug === slug) ?? null;
 }
 
-/** Markdown → HTML. Posts are your own files, so their HTML is trusted. */
+/**
+ * Markdown → HTML. Posts are your own files, so their HTML is trusted.
+ * A line that is only a video link (YouTube, Vimeo, Loom, /videos/…) becomes a player.
+ */
 export function render(md: string) {
-  return marked.parse(md, { async: false, gfm: true });
+  let inCode = false;
+  const withVideos = md.split("\n").map((line) => {
+    if (/^\s*```/.test(line)) inCode = !inCode;
+    if (inCode) return line;
+    const v = parseVideo(line.trim().replace(/^<|>$/g, ""));
+    return v ? `\n${videoHtml(v)}\n` : line;
+  }).join("\n");
+  return marked.parse(withVideos, { async: false, gfm: true });
 }
 
 export function fmtDate(d: string) {

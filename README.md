@@ -32,6 +32,8 @@ tags: [systems, learning]
 Write in Markdown here.
 ```
 
+**Video posts:** add `video: https://youtu.be/…` to the frontmatter for a video post (player at the top, listed under 🎥 Videos with a thumbnail). Or put a video link on its own line anywhere in a post to embed it there. YouTube (incl. Shorts), Vimeo, Loom, and files in `public/videos/` all work. Keep files small (GitHub's limit is 100 MB); upload longer videos to YouTube as *unlisted*.
+
 `draft: true` or a file name starting with `_` keeps a post unpublished.
 `content/blog/_template.md` has post ideas drawn from your projects. RSS lives at `/blog/rss.xml`.
 

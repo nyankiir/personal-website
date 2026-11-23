@@ -58,12 +58,28 @@ export default function GoMama() {
       </header>
 
       <section className="mt-16 rounded-[2rem] bg-butter p-8 sm:p-10">
-        <h2 className="font-display text-3xl font-semibold">Why</h2>
-        {/* ✏️ Tell your story here: why you started go-mama, and who it's for. */}
-        <p className="mt-3 max-w-3xl text-lg leading-relaxed text-ink/85">
-          The weeks around birth are when a mom most needs someone checking in, and when she&apos;s least likely to ask.
-          go-mama gives her a simple daily routine and a way to say how she&apos;s doing. It gives her care team a view that
-          surfaces who needs a call today, so silence doesn&apos;t go unnoticed.
+        <h2 className="font-display text-3xl font-semibold">Why I built go-mama</h2>
+        <div className="mt-4 max-w-3xl space-y-4 text-lg leading-relaxed text-ink/85">
+          <p>
+            I&apos;m an advocate for better women&apos;s healthcare delivery, especially for low-income and marginalized
+            communities. Too often, whether a mother gets good care depends on where she lives and how much she has.
+          </p>
+          <p>
+            Every day, more than 700 women die from preventable causes related to pregnancy and childbirth, and about 92% of
+            those deaths happen in low- and lower-middle-income countries.<sup><a href="#source-who" className="text-butter-ink underline">1</a></sup>{" "}
+            The gap usually isn&apos;t medical knowledge. It&apos;s delivery: whether a mom knows the danger signs, whether she
+            can reach care in time, and whether anyone notices when she stops checking in.
+          </p>
+          <p>
+            go-mama is my attempt to close part of that gap with tools built for the moms who have the least: a simple daily
+            routine, an easy way to say how she&apos;s doing or ask for help, care nearby on a map, and a care team that can see
+            who needs a call today, so no mom&apos;s silence goes unnoticed.
+          </p>
+        </div>
+        <p id="source-who" className="mt-6 text-sm text-ink/60">
+          1. World Health Organization,{" "}
+          <a href="https://www.who.int/news-room/fact-sheets/detail/maternal-mortality" target="_blank" rel="noreferrer" className="underline">Maternal mortality fact sheet</a>{" "}
+          (2023 estimates).
         </p>
       </section>
 

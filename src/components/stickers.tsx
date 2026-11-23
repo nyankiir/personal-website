@@ -60,7 +60,7 @@ export function Stickers({ items }: { items: { label: string; emoji: string }[] 
 
   return (
     <div>
-      <div ref={board} className="relative h-[26rem] overflow-hidden rounded-[2rem] border-2 border-dashed border-line bg-card/60 sm:h-[22rem]">
+      <div ref={board} className="relative h-[32rem] overflow-hidden rounded-[2rem] border-2 border-dashed border-line bg-card/60 sm:h-[24rem]">
         {items.map((it, i) => {
           const c = COLORS[i % COLORS.length];
           return (
