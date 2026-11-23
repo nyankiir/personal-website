@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-rose: var(--rose);
+  --color-lavender: var(--lavender);
+  --color-mint: var(--mint);
+  --color-peach: var(--peach);
+  --color-sky: var(--sky);
+  --color-butter: var(--butter);
+  --color-rose-ink: var(--rose-ink);
+  --color-lavender-ink: var(--lavender-ink);
+  --color-mint-ink: var(--mint-ink);
+  --color-peach-ink: var(--peach-ink);
+  --color-sky-ink: var(--sky-ink);
+  --color-butter-ink: var(--butter-ink);
+  --font-sans: var(--font-body), system-ui, sans-serif;
+  --font-display: var(--font-head), Georgia, serif;
+}
+
+:root {
+  --paper: #fdf8f3;
+  --card: #fffdfb;
+  --ink: #2e2a35;
+  --muted: #6e6878;
+  --line: #ece4dc;
+  --accent: #8a5cc7;
+  /* pastel fills */
+  --rose: #f9d3dd;
+  --lavender: #e2d8f7;
+  --mint: #d3eedf;
+  --peach: #fde0cc;
+  --sky: #d4e6f8;
+  --butter: #fbefc4;
+  /* readable text on each pastel */
+  --rose-ink: #9b3556;
+  --lavender-ink: #5d3f99;
+  --mint-ink: #2c6b4b;
+  --peach-ink: #9a4a1d;
+  --sky-ink: #2b5a8a;
+  --butter-ink: #7a5b08;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #1b1922; --card: #232029; --ink: #f2edf6; --muted: #aaa3b4; --line: #35303d; --accent: #c4a7f2;
+    --rose: #4a2a36; --lavender: #352c4c; --mint: #23392f; --peach: #46301f; --sky: #22324a; --butter: #3d3519;
+    --rose-ink: #f6b3c7; --lavender-ink: #d2c0f7; --mint-ink: #a8e0c2; --peach-ink: #f8c39d; --sky-ink: #a9cbf2; --butter-ink: #f0d98a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #1b1922; --card: #232029; --ink: #f2edf6; --muted: #aaa3b4; --line: #35303d; --accent: #c4a7f2;
+  --rose: #4a2a36; --lavender: #352c4c; --mint: #23392f; --peach: #46301f; --sky: #22324a; --butter: #3d3519;
+  --rose-ink: #f6b3c7; --lavender-ink: #d2c0f7; --mint-ink: #a8e0c2; --peach-ink: #f8c39d; --sky-ink: #a9cbf2; --butter-ink: #f0d98a;
+  color-scheme: dark;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); }
+::selection { background: var(--lavender); color: var(--ink); }
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -40px) scale(1.08); }
+  66% { transform: translate(-25px, 20px) scale(0.95); }
+}
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes wave { from { transform: translateX(0); } to { transform: translateX(-50px); } }
+@keyframes wiggle { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-8deg); } 75% { transform: rotate(8deg); } }
+
+@keyframes burst {
+  from { transform: translate(-50%, -50%); opacity: 1; }
+  to { transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) rotate(var(--rot)); opacity: 0; }
+}
+
+.blob { animation: drift 18s ease-in-out infinite; }
+.rise { animation: rise 0.6s ease-out both; }
+.jar-wave { animation: wave 3s linear infinite; }
+.wiggle:hover { animation: wiggle 0.4s ease-in-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .blob, .rise, .jar-wave, .wiggle:hover { animation: none; }
+}
+
+/* Blog post typography */
+.prose { line-height: 1.75; font-size: 1.075rem; }
+.prose > * + * { margin-top: 1.1em; }
+.prose h2 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; margin-top: 2em; }
+.prose h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-top: 1.6em; }
+.prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.prose ul { list-style: disc; padding-left: 1.4em; }
+.prose ol { list-style: decimal; padding-left: 1.4em; }
+.prose li + li { margin-top: 0.35em; }
+.prose blockquote { border-left: 4px solid var(--lavender); padding-left: 1em; color: var(--muted); font-style: italic; }
+.prose code { background: var(--lavender); color: var(--lavender-ink); padding: 0.1em 0.35em; border-radius: 6px; font-size: 0.9em; }
+.prose pre { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 1em 1.2em; overflow-x: auto; font-size: 0.9rem; }
+.prose pre code { background: none; color: inherit; padding: 0; }
+.prose img { border-radius: 16px; }
+.prose hr { border-color: var(--line); }
